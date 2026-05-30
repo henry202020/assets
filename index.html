@@ -2,69 +2,29 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Editor Pro | AssetForge</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AssetForge | Hub de Assets</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
-<body class="bg-slate-950 text-white p-4 md:p-8">
+<body class="bg-[#0b0e14] text-white min-h-screen">
 
-    <div id="loginOverlay" class="fixed inset-0 bg-black/95 flex items-center justify-center z-50">
-        <div class="bg-slate-900 p-8 rounded-2xl border border-white/10 w-96">
-            <h2 class="text-2xl font-bold mb-6 text-center">Acesso Master</h2>
-            <input type="password" id="pass" placeholder="Senha Admin" class="w-full bg-slate-800 p-4 rounded-xl mb-4 outline-none border border-transparent focus:border-blue-500 transition">
-            <button onclick="login()" class="w-full bg-blue-600 py-4 rounded-xl font-bold hover:bg-blue-500 transition">Entrar</button>
-        </div>
-    </div>
+    <div id="notification-container" class="fixed top-5 right-5 z-[100] flex flex-col gap-3"></div>
 
-    <div id="adminContent" class="hidden max-w-6xl mx-auto">
-        <header class="flex justify-between items-center mb-8 bg-slate-900 p-6 rounded-2xl border border-white/5">
-            <div>
-                <h1 class="text-2xl font-black italic">MODO EDITOR</h1>
-                <p class="text-xs text-slate-500">Gerenciamento de Assets & Falhas</p>
-            </div>
-            <button onclick="logout()" class="bg-red-500/10 text-red-500 px-6 py-2 rounded-lg hover:bg-red-500 hover:text-white transition">Sair para o Site</button>
-        </header>
+    <nav class="flex justify-between items-center px-10 py-6 border-b border-white/5 bg-[#0b0e14]/80 backdrop-blur-md sticky top-0 z-40">
+        <div class="text-2xl font-black tracking-tighter text-blue-500 cursor-pointer" onclick="location.href='index.html'">ASSET<span class="text-white">FORGE</span></div>
+        <a href="admin.html" class="bg-blue-600 px-5 py-2 rounded-full font-bold hover:bg-blue-500 transition shadow-lg shadow-blue-900/20">Painel Admin</a>
+    </nav>
 
-        <div class="flex gap-4 mb-8">
-            <button onclick="switchTab('create')" id="tabCreate" class="px-6 py-3 rounded-xl font-bold bg-blue-600">Criar Novo Asset</button>
-            <button onclick="switchTab('manage')" id="tabManage" class="px-6 py-3 rounded-xl font-bold bg-slate-800">Configurações & Existentes</button>
+    <main class="container mx-auto px-6 py-12">
+        <div class="text-center mb-16">
+            <h1 class="text-6xl font-black mb-4 animate__animated animate__fadeInDown">Assets Disponíveis</h1>
+            <p class="text-gray-400 text-lg">Baixe recursos exclusivos para seus projetos.</p>
         </div>
 
-        <div id="sectionCreate" class="grid grid-cols-1 md:grid-cols-2 gap-8 animate__animated animate__fadeIn">
-            <div class="bg-slate-900 p-8 rounded-3xl border border-white/5 space-y-4">
-                <h3 class="text-xl font-bold mb-4 text-blue-400">Informações do Arquivo</h3>
-                <input type="text" id="newTitle" placeholder="Nome do Asset (ex: Pack Espadas 3D)" class="w-full bg-black/40 p-4 rounded-xl outline-none focus:ring-2 ring-blue-500">
-                
-                <div class="p-4 border-2 border-dashed border-slate-700 rounded-xl">
-                    <label class="block text-sm mb-2 text-slate-400">Capa do Asset (Imagem):</label>
-                    <input type="file" id="newImg" accept="image/*" class="text-sm">
-                </div>
-
-                <div class="p-4 border-2 border-dashed border-slate-700 rounded-xl">
-                    <label class="block text-sm mb-2 text-slate-400">Arquivo para Download (.zip, .rar, .txt):</label>
-                    <input type="file" id="newFile" class="text-sm">
-                </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="assetGrid">
             </div>
-
-            <div class="bg-slate-900 p-8 rounded-3xl border border-white/5 space-y-4">
-                <h3 class="text-xl font-bold mb-4 text-red-400">Simulação de Falha</h3>
-                <select id="newFail" class="w-full bg-black/40 p-4 rounded-xl outline-none">
-                    <option value="none">Nenhuma (Funciona normal)</option>
-                    <option value="404">Erro 404 (Indisponível)</option>
-                    <option value="virus">Alerta de Vírus</option>
-                    <option value="limit">Limite de Download</option>
-                </select>
-                <button onclick="saveAsset()" class="w-full bg-green-600 py-5 rounded-2xl font-black text-xl shadow-lg shadow-green-900/20 hover:scale-[1.02] transition">SALVAR ASSET</button>
-            </div>
-        </div>
-
-        <div id="sectionManage" class="hidden animate__animated animate__fadeIn">
-            <div class="bg-slate-900 p-8 rounded-3xl border border-white/5">
-                <h3 class="text-xl font-bold mb-6">Arquivos no Banco de Dados</h3>
-                <div id="existingAssetsList" class="space-y-4">
-                    </div>
-            </div>
-        </div>
-    </div>
+    </main>
 
     <script src="script.js"></script>
 </body>
