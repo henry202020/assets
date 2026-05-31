@@ -12,8 +12,11 @@
     <div id="loginOverlay" class="fixed inset-0 bg-[#0b0e14] flex items-center justify-center z-50">
         <div class="bg-slate-900 p-10 rounded-3xl border border-white/5 w-[400px] text-center shadow-2xl">
             <h2 class="text-3xl font-black mb-6 italic">MASTER ACCESS</h2>
-            <input type="password" id="pass" placeholder="SENHA" class="w-full bg-black/40 p-5 rounded-2xl mb-4 border border-white/5 outline-none focus:border-blue-500 text-center tracking-[10px]">
-            <button onclick="login()" class="w-full bg-blue-600 py-5 rounded-2xl font-black hover:bg-blue-500 transition active:scale-95 shadow-lg shadow-blue-900/20">ENTRAR</button>
+            <input type="password" id="pass" placeholder="SENHA" class="w-full bg-black/40 p-5 rounded-2xl mb-6 border border-white/5 outline-none focus:border-blue-500 text-center tracking-[10px]">
+            <div class="flex flex-col gap-3">
+                <button onclick="login()" class="w-full bg-blue-600 py-5 rounded-2xl font-black hover:bg-blue-500 transition">ENTRAR</button>
+                <button onclick="location.href='index.html'" class="w-full bg-white/5 py-3 rounded-2xl font-bold hover:bg-white/10 transition">VOLTAR AO SITE</button>
+            </div>
         </div>
     </div>
 
@@ -30,12 +33,17 @@
         <div id="sectionForm" class="grid grid-cols-1 md:grid-cols-2 gap-8 animate__animated animate__fadeIn">
             <div class="bg-slate-900 p-8 rounded-3xl border border-white/5 space-y-4">
                 <input type="hidden" id="editId">
-                <label class="block font-bold text-blue-400">Título do Asset</label>
+                <label class="block font-bold text-blue-400">Título</label>
                 <input type="text" id="assetTitle" class="w-full bg-black/50 p-4 rounded-xl border border-white/5 outline-none">
                 
-                <label class="block font-bold text-blue-400">Link do Download (MediaFire, GDrive, etc)</label>
-                <input type="text" id="assetFileUrl" placeholder="https://..." class="w-full bg-black/50 p-4 rounded-xl border border-white/5 outline-none">
+                <label class="block font-bold text-blue-400">Descrição Detalhada</label>
+                <textarea id="assetDesc" rows="4" class="w-full bg-black/50 p-4 rounded-xl border border-white/5 outline-none resize-none" placeholder="Conte mais sobre o asset..."></textarea>
 
+                <label class="block font-bold text-blue-400">Link do Download</label>
+                <input type="text" id="assetFileUrl" class="w-full bg-black/50 p-4 rounded-xl border border-white/5 outline-none">
+            </div>
+
+            <div class="bg-slate-900 p-8 rounded-3xl border border-white/5 space-y-6">
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block font-bold text-blue-400">Status</label>
@@ -56,15 +64,11 @@
                         </select>
                     </div>
                 </div>
-            </div>
-
-            <div class="bg-slate-900 p-8 rounded-3xl border border-white/5 flex flex-col justify-between">
                 <div>
-                    <label class="block font-bold text-blue-400 mb-2">Capa (Upload do PC)</label>
+                    <label class="block font-bold text-blue-400 mb-2">Capa (Upload)</label>
                     <input type="file" id="assetImg" accept="image/*" class="w-full text-sm text-slate-500 file:bg-blue-600 file:text-white file:rounded-full file:border-0 file:px-4 file:py-2">
-                    <p class="text-[10px] text-slate-500 mt-2 italic">* Use imagens leves para não encher a memória.</p>
                 </div>
-                <button id="mainBtn" onclick="saveAsset()" class="w-full bg-green-600 py-6 rounded-2xl font-black text-xl hover:bg-green-500 transition shadow-lg shadow-green-900/20 active:scale-95 mt-6">SALVAR ASSET</button>
+                <button id="mainBtn" onclick="saveAsset()" class="w-full bg-green-600 py-6 rounded-2xl font-black text-xl hover:bg-green-500 transition shadow-lg active:scale-95">SALVAR ASSET</button>
             </div>
         </div>
 
@@ -72,7 +76,6 @@
             <div id="existingAssetsList" class="grid gap-3"></div>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
