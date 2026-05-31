@@ -1,0 +1,24 @@
+# Repository Security Configuration
+
+[core]
+    # Use our custom hooks directory
+    hooksPath = .githooks
+
+[commit]
+    # Recommended: require GPG signing
+    # gpgSign = true
+
+[push]
+    # Prevent accidentally pushing to main
+    # default = upstream
+    # requireBranch = main
+
+[alias]
+    # Check for secrets before committing
+    check-secrets = "!git diff HEAD --cached | gitleaks detect --source stdin --format sarif"
+    
+    # Show what will be committed
+    preview = "!git diff --cached"
+    
+    # Safely remove accidentally committed secrets
+    remove-secret = "!f() { git filter-repo --invert-paths --path \"$1\"; }; f"
